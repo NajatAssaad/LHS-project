@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<head>
+    <style type="text/css">
+        body {
+            background-color: #337ab7;
+        }
+
+        .header {
+            height: 130px;
+            width: 50%;
+            background-color: #337ab7;
+        }
+
+        .button {
+            height: 40px;
+            width: 80px;
+            margin-top: 45px;
+            margin-right: 30px;
+            background-color: #337ab7;
+            border-radius: 5px;
+            color: white;
+            border: 0px;
+        }
+
+        button:hover {
+            border: 1px solid#337ab7;
+            box-shadow: 5px 8px 11px #0359a5;
+
+        }
+
+        .big {
+            display: flex;
+            margin: -10px;
+        }
+
+
+        .b2 {
+            height: 50px;
+            width: 120px;
+            border: 0;
+            margin-right: 30px;
+            background-color: #337ab7;
+            font-size: 25px;
+            color: white;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+
+
+        td {
+            height: 65px;
+            padding-left: 15px;
+            font-size: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: rgb(25, 35, 97);
+            box-sizing: border-box;
+            font-weight: 500;
+        }
+
+        .wrapper {
+            margin-top: 50px;
+            width: 370px;
+            display: flex;
+            animation: slide 11s infinite alternate ease-in-out;
+
+
+        }
+
+        .img1 {
+            width: 740px;
+            height: 450px;
+            margin-top: -40px;
+            margin-bottom: 10px;
+
+
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+
+            30% {
+                transform: translateX(0%);
+            }
+
+            60% {
+                transform: translateX(-100%);
+            }
+
+            80% {
+                transform: translateX(-200%);
+            }
+
+            100% {
+                transform: translateX(-350%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="big">
+
+        <div class="header" style="display: flex;">
+            <img src="./images/logo.png" style="margin-left: 27px;">
+            <div style="text-align: center;">
+                <h2 style="font-family: 'Montserrat', 'Helvetica', arial, serif;
+                       text-align: center;
+                       padding-top: 15px;
+                       color: white;">
+                    LEBANON</br> HIGH SCHOOL</h2>
+            </div>
+
+        </div>
+
+
+        <div class="header" style="text-align: right;">
+
+            <button id="lang" style="height: 40px;;
+                                              width: 40px;      
+                                              border-radius: 25px;; 
+                                              margin-right: 20px;
+                                              border: 0;
+                                              background-color: #337ab7;
+                                              color:white ">EN</button>
+          <script>
+            let btn = document.getElementById("lang");
+            btn.addEventListener("click", function() {
+                let lang = btn.textContent;
+                if (lang === "EN") {
+                    btn.textContent = "AR";
+                } else {
+                    btn.textContent = "EN";
+                }
+            });
+        </script>
+            <a href="sign up.html"> <button class="button">Sign Up</button></a>
+
+
+            <a href="log in.html"> <button class="button"> Log In</button></a>
+
+
+            <a style="text-decoration: none;" href="about us .html"><button style="height: 40px;
+                width: 80px ;
+                margin-top: 45px;
+                margin-right: 30px;
+                background-color:#337ab7;
+                border-radius: 5px;
+                color:white;
+                border: 0px;"> About Us</button>
+
+            </a>
+            <a style="text-decoration: none;" href="contact us.html">
+                <button style="height: 40px;
+               width: 80px ;
+               margin-top: 45px;
+               margin-right: 30px;
+               background-color:#337ab7;
+               border-radius: 5px;
+               color:white;
+               border: 0px;">Contact Us</button>
+
+            </a>
+
+
+
+        </div>
+
+
+
+    </div>
+    <div class="wrapper">
+        <img class="img1" src="./images/view.jpg">
+        <img class="img1" src="./images/Cafeteria.jpg">
+        <img class="img1" src="./images/students.jpg">
+        <img class="img1" src="./images/grad.jpeg">
+
+    </div>
+    <div style="background-color: #3d93df;height: 40px;
+                margin: -10px;padding-left: 20px;
+                padding-top: 26px;
+                padding-left: 50px;
+                color: rgb(25, 35, 97);">
+
+
+        <h2>Follow Us:</h2>
+    </div>
+    <div class="big" style="background-color: #3d93df;height:300px; ">
+        <div>
+            <table border="0" style="margin-left: 30px;
+                                     margin-right: 400px;
+                                     margin-top: 40px;">
+                <tr>
+                    <td><img src="./images/phone icon .png" height="40px" width="40px" /></td>
+                    <td>06/978700</td>
+                </tr>
+                <tr>
+                    <td><img src="./images/location icon.png" height="40px" width="40px" /> </td>
+                    <td>BEIRUT CITY</td>
+                </tr>
+                <tr>
+                    <td><img src="./images/white email.png" height="40px" width="40px" /> </td>
+                    <td>Lebanon.highSchool@gmail.com</td>
+                </tr>
+            </table>
+
+        </div>
+        <div>
+            <table border="0" style="margin-top: 40px;">
+                <tr>
+                    <td style="padding-left: 5px;"><img src="./images/face.png"
+                            style="height: 40px; ; width:70px ;    padding-left: 3px;" /></td>
+                    <td>Lebanon High School</td>
+                </tr>
+                <tr>
+                    <td><img src="./images/insta.png" style="height: 40px; width: 55px;" /></td>
+                    <td>Lebanon High School</td>
+                </tr>
+                <tr>
+                    <td><img src="./images/linkedin.png" style="height: 35px; width: 42px;padding-left: 6px;" /></td>
+                    <td>Lebanon High School</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
