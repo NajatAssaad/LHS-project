@@ -1,936 +1,918 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebanon High School</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <title>Lebanon High School</title>
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #1f2d3d;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        .header {
+            width: 100%;
+            background: #337ab7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 6%;
+            position: relative;
+            z-index: 100;
+        }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #ffffff;
-      color: #1f2d3d;
-    }
+        .school-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
 
-    .header {
-      width: 100%;
-      background: #337ab7;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 18px 6%;
-      position: relative;
-      z-index: 100;
-    }
+        .school-brand img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+        }
 
-    .school-brand {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+        .school-brand h1 {
+            color: white;
+            font-size: 21px;
+            line-height: 1.3;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
 
-    .school-brand img {
-      width: 70px;
-      height: 70px;
-      object-fit: cover;
-    }
-
-    .school-brand h1 {
-      color: white;
-      font-size: 21px;
-      line-height: 1.3;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-
-    /* =========================
+        /* =========================
        NAVIGATION
     ========================== */
 
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-    .nav a {
-      text-decoration: none;
-      color: white;
-      padding: 11px 15px;
-      border-radius: 6px;
-      font-size: 15px;
-      transition: all 0.25s ease;
-    }
+        .nav a {
+            text-decoration: none;
+            color: white;
+            padding: 11px 15px;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: all 0.25s ease;
+        }
 
-    .nav a:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-    }
+        .nav a:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
 
-    .language-btn {
-      width: 43px;
-      height: 43px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      margin-left: 8px;
-      transition: all 0.25s ease;
-    }
+        .language-btn {
+            width: 43px;
+            height: 43px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 8px;
+            transition: all 0.25s ease;
+        }
 
-    .language-btn:hover {
-      background: white;
-      color: #337ab7;
-    }
+        .language-btn:hover {
+            background: white;
+            color: #337ab7;
+        }
 
-    .menu-btn {
-      display: none;
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 29px;
-      cursor: pointer;
-    }
+        .menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 29px;
+            cursor: pointer;
+        }
 
-    /* =========================
+        /* =========================
        HERO
     ========================== */
 
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 570px;
-      overflow: hidden;
-      background: #1d4f7a;
-    }
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 570px;
+            overflow: hidden;
+            background: #1d4f7a;
+        }
 
-    .slides {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
+        .slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
 
-    .slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 1s ease;
-    }
+        .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
 
-    .slide.active {
-      opacity: 1;
-    }
+        .slide.active {
+            opacity: 1;
+        }
 
-    .slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    .slide::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(10, 49, 82, 0.75),
-        rgba(10, 49, 82, 0.25)
-      );
-    }
+        .slide::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                    rgba(10, 49, 82, 0.75),
+                    rgba(10, 49, 82, 0.25));
+        }
 
-    .hero-content {
-      position: absolute;
-      z-index: 10;
-      top: 50%;
-      left: 7%;
-      transform: translateY(-50%);
-      max-width: 580px;
-      color: white;
-    }
+        .hero-content {
+            position: absolute;
+            z-index: 10;
+            top: 50%;
+            left: 7%;
+            transform: translateY(-50%);
+            max-width: 580px;
+            color: white;
+        }
 
-    .hero-content span {
-      display: inline-block;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      font-size: 13px;
-      margin-bottom: 16px;
-    }
+        .hero-content span {
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
 
-    .hero-content h2 {
-      font-size: clamp(36px, 5vw, 65px);
-      line-height: 1.05;
-      margin-bottom: 20px;
-    }
+        .hero-content h2 {
+            font-size: clamp(36px, 5vw, 65px);
+            line-height: 1.05;
+            margin-bottom: 20px;
+        }
 
-    .hero-content p {
-      max-width: 520px;
-      font-size: 17px;
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 30px;
-    }
+        .hero-content p {
+            max-width: 520px;
+            font-size: 17px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
 
-    .hero-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
 
-    .hero-btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 14px 24px;
-      border-radius: 5px;
-      font-weight: 600;
-      transition: all 0.25s ease;
-    }
+        .hero-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.25s ease;
+        }
 
-    .hero-btn.primary {
-      background: white;
-      color: #337ab7;
-    }
+        .hero-btn.primary {
+            background: white;
+            color: #337ab7;
+        }
 
-    .hero-btn.primary:hover {
-      background: #f1f5f8;
-      transform: translateY(-2px);
-    }
+        .hero-btn.primary:hover {
+            background: #f1f5f8;
+            transform: translateY(-2px);
+        }
 
-    .hero-btn.secondary {
-      border: 1px solid white;
-      color: white;
-    }
+        .hero-btn.secondary {
+            border: 1px solid white;
+            color: white;
+        }
 
-    .hero-btn.secondary:hover {
-      background: white;
-      color: #337ab7;
-    }
+        .hero-btn.secondary:hover {
+            background: white;
+            color: #337ab7;
+        }
 
-    /* =========================
+        /* =========================
        HERO DOTS
     ========================== */
 
-    .slider-dots {
-      position: absolute;
-      z-index: 10;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-    }
+        .slider-dots {
+            position: absolute;
+            z-index: 10;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.45);
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.45);
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-    .dot.active {
-      background: white;
-      transform: scale(1.3);
-    }
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
 
-    /* =========================
+        /* =========================
        INTRO
     ========================== */
 
-    .intro {
-      padding: 85px 7%;
-      text-align: center;
-      background: #ffffff;
-    }
+        .intro {
+            padding: 85px 7%;
+            text-align: center;
+            background: #ffffff;
+        }
 
-    .section-label {
-      color: #337ab7;
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 3px;
-      font-weight: bold;
-    }
+        .section-label {
+            color: #337ab7;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
 
-    .intro h2 {
-      margin: 12px auto 18px;
-      font-size: clamp(30px, 4vw, 44px);
-      color: #1d3550;
-    }
+        .intro h2 {
+            margin: 12px auto 18px;
+            font-size: clamp(30px, 4vw, 44px);
+            color: #1d3550;
+        }
 
-    .intro p {
-      max-width: 750px;
-      margin: auto;
-      color: #667788;
-      line-height: 1.8;
-      font-size: 16px;
-    }
+        .intro p {
+            max-width: 750px;
+            margin: auto;
+            color: #667788;
+            line-height: 1.8;
+            font-size: 16px;
+        }
 
-    /* =========================
+        /* =========================
        SCHOOL FEATURES
     ========================== */
 
-    .features {
-      background: #f5f8fb;
-      padding: 75px 7%;
-    }
+        .features {
+            background: #f5f8fb;
+            padding: 75px 7%;
+        }
 
-    .features-grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
-    }
+        .features-grid {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
 
-    .feature-card {
-      background: white;
-      padding: 35px 28px;
-      border-radius: 10px;
-      box-shadow: 0 8px 30px rgba(28, 65, 95, 0.08);
-      transition: transform 0.3s ease;
-    }
+        .feature-card {
+            background: white;
+            padding: 35px 28px;
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(28, 65, 95, 0.08);
+            transition: transform 0.3s ease;
+        }
 
-    .feature-card:hover {
-      transform: translateY(-7px);
-    }
+        .feature-card:hover {
+            transform: translateY(-7px);
+        }
 
-    .feature-icon {
-      width: 55px;
-      height: 55px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #eaf3fa;
-      color: #337ab7;
-      font-size: 25px;
-      border-radius: 50%;
-      margin-bottom: 20px;
-    }
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eaf3fa;
+            color: #337ab7;
+            font-size: 25px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
 
-    .feature-card h3 {
-      color: #1d3550;
-      margin-bottom: 12px;
-      font-size: 20px;
-    }
+        .feature-card h3 {
+            color: #1d3550;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
 
-    .feature-card p {
-      color: #667788;
-      line-height: 1.7;
-      font-size: 14px;
-    }
+        .feature-card p {
+            color: #667788;
+            line-height: 1.7;
+            font-size: 14px;
+        }
 
-    /* =========================
+        /* =========================
        CONTACT / FOOTER
     ========================== */
 
-    .contact-section {
-      background: #337ab7;
-      padding: 70px 7% 35px;
-      color: white;
-    }
+        .contact-section {
+            background: #337ab7;
+            padding: 70px 7% 35px;
+            color: white;
+        }
 
-    .contact-container {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1.3fr 1fr;
-      gap: 80px;
-    }
+        .contact-container {
+            max-width: 1200px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 80px;
+        }
 
-    .contact-section h2 {
-      font-size: 30px;
-      margin-bottom: 15px;
-    }
+        .contact-section h2 {
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
 
-    .contact-description {
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.8;
-      max-width: 520px;
-      margin-bottom: 30px;
-    }
+        .contact-description {
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.8;
+            max-width: 520px;
+            margin-bottom: 30px;
+        }
 
-    .contact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
 
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    .contact-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+        .contact-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
 
-    .contact-icon img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-    }
+        .contact-icon img {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
 
-    .contact-item p {
-      font-size: 15px;
-    }
+        .contact-item p {
+            font-size: 15px;
+        }
 
-    /* =========================
+        /* =========================
        SOCIAL
     ========================== */
 
-    .social-column h3 {
-      margin-bottom: 22px;
-      font-size: 22px;
-    }
+        .social-column h3 {
+            margin-bottom: 22px;
+            font-size: 22px;
+        }
 
-    .social-links {
-      display: flex;
-      flex-direction: column;
-      gap: 13px;
-    }
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
 
-    .social-link {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: white;
-      padding: 14px 16px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 7px;
-      transition: all 0.25s ease;
-    }
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: white;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 7px;
+            transition: all 0.25s ease;
+        }
 
-    .social-link:hover {
-      background: rgba(255, 255, 255, 0.16);
-      transform: translateX(4px);
-    }
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.16);
+            transform: translateX(4px);
+        }
 
-    .social-link img {
-      width: 28px;
-      height: 28px;
-      object-fit: contain;
-    }
+        .social-link img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
 
-    .footer-bottom {
-      max-width: 1200px;
-      margin: 55px auto 0;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
-      text-align: center;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 13px;
-    }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 55px auto 0;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
 
-    /* =========================
+        /* =========================
        RESPONSIVE
     ========================== */
 
-    @media (max-width: 900px) {
+        @media (max-width: 900px) {
 
-      .menu-btn {
-        display: block;
-      }
+            .menu-btn {
+                display: block;
+            }
 
-      .nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #2c6da4;
-        flex-direction: column;
-        align-items: stretch;
-        padding: 15px 6%;
-        display: none;
-      }
+            .nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #2c6da4;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px 6%;
+                display: none;
+            }
 
-      .nav.open {
-        display: flex;
-      }
+            .nav.open {
+                display: flex;
+            }
 
-      .nav a {
-        width: 100%;
-        padding: 13px;
-      }
+            .nav a {
+                width: 100%;
+                padding: 13px;
+            }
 
-      .language-btn {
-        margin: 5px 0;
-      }
+            .language-btn {
+                margin: 5px 0;
+            }
 
-      .hero {
-        height: 520px;
-      }
+            .hero {
+                height: 520px;
+            }
 
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
 
-      .contact-container {
-        grid-template-columns: 1fr;
-        gap: 50px;
-      }
-    }
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+        }
 
-    @media (max-width: 600px) {
+        @media (max-width: 600px) {
 
-      .header {
-        padding: 13px 5%;
-      }
+            .header {
+                padding: 13px 5%;
+            }
 
-      .school-brand img {
-        width: 55px;
-        height: 55px;
-      }
+            .school-brand img {
+                width: 55px;
+                height: 55px;
+            }
 
-      .school-brand h1 {
-        font-size: 15px;
-      }
+            .school-brand h1 {
+                font-size: 15px;
+            }
 
-      .hero {
-        height: 500px;
-      }
+            .hero {
+                height: 500px;
+            }
 
-      .hero-content {
-        left: 6%;
-        right: 6%;
-      }
+            .hero-content {
+                left: 6%;
+                right: 6%;
+            }
 
-      .hero-content h2 {
-        font-size: 39px;
-      }
+            .hero-content h2 {
+                font-size: 39px;
+            }
 
-      .hero-content p {
-        font-size: 15px;
-      }
+            .hero-content p {
+                font-size: 15px;
+            }
 
-      .hero-btns {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+            .hero-btns {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-      .hero-btn {
-        width: 100%;
-        text-align: center;
-      }
+            .hero-btn {
+                width: 100%;
+                text-align: center;
+            }
 
-      .intro,
-      .features,
-      .contact-section {
-        padding-left: 6%;
-        padding-right: 6%;
-      }
-    }
-
-  </style>
+            .intro,
+            .features,
+            .contact-section {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="header">
+    <header class="header">
 
-    <div class="school-brand">
-      <img src="./images/logo.png" alt="Lebanon High School logo">
+        <div class="school-brand">
+            <img src="./images/logo.png" alt="Lebanon High School logo">
 
-      <h1>
-        Lebanon<br>
-        High School
-      </h1>
-    </div>
-
-    <button class="menu-btn" id="menuBtn">
-      ☰
-    </button>
-
-    <nav class="nav" id="nav">
-
-      <a href="#">Home</a>
-      <a href="about us .html">About Us</a>
-      <a href="contact us.html">Contact Us</a>
-      <a href="sign up.html">Sign Up</a>
-      <a href="log in.html">Log In</a>
-
-      <button class="language-btn" id="lang">
-        EN
-      </button>
-
-    </nav>
-
-  </header>
-
-
-  <!-- HERO -->
-  <section class="hero">
-
-    <div class="slides">
-
-      <div class="slide active">
-        <img src="./images/view.jpg" alt="Lebanon High School">
-      </div>
-
-      <div class="slide">
-        <img src="./images/Cafeteria.jpg" alt="School cafeteria">
-      </div>
-
-      <div class="slide">
-        <img src="./images/students.jpg" alt="Students">
-      </div>
-
-      <div class="slide">
-        <img src="./images/grad.jpeg" alt="Graduation">
-      </div>
-
-    </div>
-
-
-    <div class="hero-content">
-
-      <span>Welcome to</span>
-
-      <h2>
-        Lebanon High School
-      </h2>
-
-      <p>
-        Building a supportive learning environment where students
-        develop their knowledge, skills and confidence for the future.
-      </p>
-
-      <div class="hero-btns">
-
-        <a href="about us .html" class="hero-btn primary">
-          Discover Our School
-        </a>
-
-        <a href="sign up.html" class="hero-btn secondary">
-          Join Us
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="slider-dots">
-
-      <span class="dot active" data-index="0"></span>
-      <span class="dot" data-index="1"></span>
-      <span class="dot" data-index="2"></span>
-      <span class="dot" data-index="3"></span>
-
-    </div>
-
-  </section>
-
-
-  <!-- INTRO -->
-  <section class="intro">
-
-    <span class="section-label">
-      Our School
-    </span>
-
-    <h2>
-      Learn. Grow. Achieve.
-    </h2>
-
-    <p>
-      At Lebanon High School, we aim to provide students with a
-      positive and engaging environment that encourages academic
-      achievement, personal development and lifelong learning.
-    </p>
-
-  </section>
-
-
-  <!-- FEATURES -->
-  <section class="features">
-
-    <div class="features-grid">
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🎓
+            <h1>
+                Lebanon<br>
+                High School
+            </h1>
         </div>
 
-        <h3>Quality Education</h3>
+        <button class="menu-btn" id="menuBtn">
+            ☰
+        </button>
 
-        <p>
-          Helping students build strong academic foundations through
-          engaging lessons and dedicated teaching.
-        </p>
+        <nav class="nav" id="nav">
 
-      </div>
+            <a href="#">Home</a>
+            <a href="about us .html">About Us</a>
+            <a href="contact us.html">Contact Us</a>
+            <a href="sign up.html">Sign Up</a>
+            <a href="log in.html">Log In</a>
 
+            <button class="language-btn" id="lang">
+                EN
+            </button>
 
-      <div class="feature-card">
+        </nav>
 
-        <div class="feature-icon">
-          👨‍🏫
-        </div>
+    </header>
 
-        <h3>Experienced Teachers</h3>
+    <section class="hero">
 
-        <p>
-          Our teachers support students throughout their learning
-          journey and encourage them to reach their potential.
-        </p>
+        <div class="slides">
 
-      </div>
-
-
-      <div class="feature-card">
-
-        <div class="feature-icon">
-          🌟
-        </div>
-
-        <h3>Student Development</h3>
-
-        <p>
-          Education goes beyond the classroom. We encourage confidence,
-          creativity, responsibility and teamwork.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- CONTACT -->
-  <footer class="contact-section">
-
-    <div class="contact-container">
-
-      <div>
-
-        <h2>Get in Touch</h2>
-
-        <p class="contact-description">
-          Have a question about Lebanon High School? Contact us using
-          the details below and our team will be happy to assist you.
-        </p>
-
-
-        <div class="contact-list">
-
-          <div class="contact-item">
-
-            <div class="contact-icon">
-              <img src="./images/phone icon .png" alt="Phone">
+            <div class="slide active">
+                <img src="./images/view.jpg" alt="Lebanon High School">
             </div>
 
-            <p>06/978700</p>
-
-          </div>
-
-
-          <div class="contact-item">
-
-            <div class="contact-icon">
-              <img src="./images/location icon.png" alt="Location">
+            <div class="slide">
+                <img src="./images/Cafeteria.jpg" alt="School cafeteria">
             </div>
 
-            <p>Beirut City, Lebanon</p>
-
-          </div>
-
-
-          <div class="contact-item">
-
-            <div class="contact-icon">
-              <img src="./images/white email.png" alt="Email">
+            <div class="slide">
+                <img src="./images/students.jpg" alt="Students">
             </div>
 
-            <p>Lebanon.highSchool@gmail.com</p>
-
-          </div>
+            <div class="slide">
+                <img src="./images/grad.jpeg" alt="Graduation">
+            </div>
 
         </div>
 
-      </div>
 
+        <div class="hero-content">
 
-      <!-- SOCIAL -->
-      <div class="social-column">
+            <span>Welcome to</span>
 
-        <h3>Follow Us</h3>
+            <h2>
+                Lebanon High School
+            </h2>
 
-        <div class="social-links">
+            <p>
+                Building a supportive learning environment where students
+                develop their knowledge, skills and confidence for the future.
+            </p>
 
-          <a href="#" class="social-link">
+            <div class="hero-btns">
 
-            <img src="./images/face.png" alt="Facebook">
+                <a href="about us .html" class="hero-btn primary">
+                    Discover Our School
+                </a>
 
-            <span>Lebanon High School</span>
+                <a href="sign up.html" class="hero-btn secondary">
+                    Join Us
+                </a>
 
-          </a>
-
-
-          <a href="#" class="social-link">
-
-            <img src="./images/insta.png" alt="Instagram">
-
-            <span>Lebanon High School</span>
-
-          </a>
-
-
-          <a href="#" class="social-link">
-
-            <img src="./images/linkedin.png" alt="LinkedIn">
-
-            <span>Lebanon High School</span>
-
-          </a>
+            </div>
 
         </div>
 
-      </div>
 
-    </div>
+        <div class="slider-dots">
 
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
 
-    <div class="footer-bottom">
+        </div>
 
-      © <span id="year"></span> Lebanon High School.
-      All rights reserved.
+    </section>
 
-    </div>
+    <section class="intro">
 
-  </footer>
+        <span class="section-label">
+            Our School
+        </span>
 
+        <h2>
+            Learn. Grow. Achieve.
+        </h2>
 
-  <script>
+        <p>
+            At Lebanon High School, we aim to provide students with a
+            positive and engaging environment that encourages academic
+            achievement, personal development and lifelong learning.
+        </p>
 
-    /* =========================
-       LANGUAGE BUTTON
-    ========================== */
+    </section>
 
-    const langBtn = document.getElementById("lang");
+    <section class="features">
 
-    langBtn.addEventListener("click", () => {
+        <div class="features-grid">
 
-      if (langBtn.textContent.trim() === "EN") {
-        langBtn.textContent = "AR";
-      } else {
-        langBtn.textContent = "EN";
-      }
+            <div class="feature-card">
 
-    });
+                <div class="feature-icon">
+                     <i class="fa-solid fa-graduation-cap"></i>
+                </div>
 
+                <h3>Quality Education</h3>
 
-    /* =========================
-       MOBILE MENU
-    ========================== */
+                <p>
+                    Helping students build strong academic foundations through
+                    engaging lessons and dedicated teaching.
+                </p>
 
-    const menuBtn = document.getElementById("menuBtn");
-    const nav = document.getElementById("nav");
-
-    menuBtn.addEventListener("click", () => {
-
-      nav.classList.toggle("open");
-
-      if (nav.classList.contains("open")) {
-        menuBtn.textContent = "✕";
-      } else {
-        menuBtn.textContent = "☰";
-      }
-
-    });
+            </div>
 
 
-    /* =========================
-       IMAGE SLIDER
-    ========================== */
+            <div class="feature-card">
 
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
+                <div class="feature-icon">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                </div>
 
-    let currentSlide = 0;
+                <h3>Experienced Teachers</h3>
 
-    function showSlide(index) {
+                <p>
+                    Our teachers support students throughout their learning
+                    journey and encourage them to reach their potential.
+                </p>
 
-      slides.forEach(slide => {
-        slide.classList.remove("active");
-      });
-
-      dots.forEach(dot => {
-        dot.classList.remove("active");
-      });
-
-      slides[index].classList.add("active");
-      dots[index].classList.add("active");
-
-      currentSlide = index;
-
-    }
-
-    function nextSlide() {
-
-      currentSlide++;
-
-      if (currentSlide >= slides.length) {
-        currentSlide = 0;
-      }
-
-      showSlide(currentSlide);
-
-    }
+            </div>
 
 
-    let sliderInterval = setInterval(nextSlide, 4500);
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                  <i class="fa-solid fa-seedling"></i>
+                </div>
+
+                <h3>Student Development</h3>
+
+                <p>
+                    Education goes beyond the classroom. We encourage confidence,
+                    creativity, responsibility and teamwork.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <footer class="contact-section">
+
+        <div class="contact-container">
+
+            <div>
+
+                <h2>Get in Touch</h2>
+
+                <p class="contact-description">
+                    Have a question about Lebanon High School? Contact us using
+                    the details below and our team will be happy to assist you.
+                </p>
 
 
-    dots.forEach(dot => {
+                <div class="contact-list">
 
-      dot.addEventListener("click", () => {
+                    <div class="contact-item">
 
-        const index = Number(dot.dataset.index);
+                        <div class="contact-icon">
+                            <img src="./images/phone icon .png" alt="Phone">
+                        </div>
 
-        showSlide(index);
+                        <p>06/978700</p>
 
-        clearInterval(sliderInterval);
-
-        sliderInterval = setInterval(nextSlide, 4500);
-
-      });
-
-    });
+                    </div>
 
 
-    /* =========================
-       FOOTER YEAR
-    ========================== */
+                    <div class="contact-item">
 
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
+                        <div class="contact-icon">
+                            <img src="./images/location icon.png" alt="Location">
+                        </div>
 
-  </script>
+                        <p>Beirut City, Lebanon</p>
+
+                    </div>
+
+
+                    <div class="contact-item">
+
+                        <div class="contact-icon">
+                            <img src="./images/white email.png" alt="Email">
+                        </div>
+
+                        <p>Lebanon.highSchool@gmail.com</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SOCIAL -->
+            <div class="social-column">
+
+                <h3>Follow Us</h3>
+
+                <div class="social-links">
+
+                    <a href="#" class="social-link">
+
+                        <img src="./images/face.png" alt="Facebook">
+
+                        <span>Lebanon High School</span>
+
+                    </a>
+
+
+                    <a href="#" class="social-link">
+
+                        <img src="./images/insta.png" alt="Instagram">
+
+                        <span>Lebanon High School</span>
+
+                    </a>
+
+
+                    <a href="#" class="social-link">
+
+                        <img src="./images/linkedin.png" alt="LinkedIn">
+
+                        <span>Lebanon High School</span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            © <span id="year"></span> Lebanon High School.
+            All rights reserved.
+
+        </div>
+
+    </footer>
+
+    <script>
+
+        /*LANGUAGE BUTTON*/
+
+        const langBtn = document.getElementById("lang");
+
+        langBtn.addEventListener("click", () => {
+
+            if (langBtn.textContent.trim() === "EN") {
+                langBtn.textContent = "AR";
+            } else {
+                langBtn.textContent = "EN";
+            }
+
+        });
+
+
+        /*MOBILE MENU */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const nav = document.getElementById("nav");
+
+        menuBtn.addEventListener("click", () => {
+
+            nav.classList.toggle("open");
+
+            if (nav.classList.contains("open")) {
+                menuBtn.textContent = "✕";
+            } else {
+                menuBtn.textContent = "☰";
+            }
+
+        });
+
+
+        /*IMAGE SLIDER*/
+
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+
+        let currentSlide = 0;
+
+        function showSlide(index) {
+
+            slides.forEach(slide => {
+                slide.classList.remove("active");
+            });
+
+            dots.forEach(dot => {
+                dot.classList.remove("active");
+            });
+
+            slides[index].classList.add("active");
+            dots[index].classList.add("active");
+
+            currentSlide = index;
+
+        }
+
+        function nextSlide() {
+
+            currentSlide++;
+
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+
+            showSlide(currentSlide);
+
+        }
+
+
+        let sliderInterval = setInterval(nextSlide, 4500);
+
+
+        dots.forEach(dot => {
+
+            dot.addEventListener("click", () => {
+
+                const index = Number(dot.dataset.index);
+
+                showSlide(index);
+
+                clearInterval(sliderInterval);
+
+                sliderInterval = setInterval(nextSlide, 4500);
+
+            });
+
+        });
+
+
+        /* =========================
+           FOOTER YEAR
+        ========================== */
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+    </script>
 
 </body>
+
 </html>
